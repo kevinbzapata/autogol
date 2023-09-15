@@ -15,6 +15,7 @@ import { IconButton, MD3Colors } from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Micon from 'react-native-vector-icons/MaterialCommunityIcons';
+import auth from '@react-native-firebase/auth';
 
 
 
@@ -24,6 +25,28 @@ import Micon from 'react-native-vector-icons/MaterialCommunityIcons';
 const LoginScreen = () => {
   let ScreenHeight = Dimensions.get('window').height;
   console.log('LoginScreen');
+
+
+  const handleLoginEmail = () => {
+    auth()
+  .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+  .then(() => {
+    console.log('User account created & signed in!');
+  })
+  .catch(error => {
+    if (error.code === 'auth/email-already-in-use') {
+      console.log('That email address is already in use!');
+    }
+
+    if (error.code === 'auth/invalid-email') {
+      console.log('That email address is invalid!');
+    }
+
+    console.error(error);
+  });
+
+
+  }
 
   return (
     <>
@@ -47,13 +70,17 @@ const LoginScreen = () => {
                 marginVertical : 100
               }}>
               {/* Ingresar Logo Autogol */}
-             
+
 
               <View style={styles.containerLogo}>
-              <Image
+              {/* <Image
                 style={styles.imageLogo}
                 source={require('../../assets/logoLogin.png')}
-              />
+              /> */}
+              </View >
+
+              <View style={styles.containerLeyend}>
+              <Text style={styles.textLeyend}> </Text>
               </View>
 
               <View style={styles.containerButtons}>
@@ -63,13 +90,14 @@ const LoginScreen = () => {
                   borderColor: '#fff',
                   borderWidth: 2,
                   margin: 10,
-                  
+
                 }}>
                 <Micon.Button
                   name="cellphone"
                   borderRadius={100}
                   backgroundColor={'#00000000'}
                   style={{ height: 50, marginLeft: 15 }}
+                  onPress={() => handleLoginEmail()}
                 >
                   <Text style={styles.textButton}>Ingresa con tu número</Text>
                 </Micon.Button>
@@ -91,7 +119,7 @@ const LoginScreen = () => {
 
                 >
                   <Text style={styles.textButton}>Iniciar sesión con Facebook</Text>
-                  
+
                 </Icon.Button>
 
               </View>
@@ -102,7 +130,7 @@ const LoginScreen = () => {
                   borderColor: '#fff',
                   borderWidth: 2,
                   margin: 10,
-                
+
                 }}>
                 <Icon.Button
                   name="google"
@@ -113,7 +141,7 @@ const LoginScreen = () => {
 
                 >
                    <Text style={styles.textButton}>Continuar con Google</Text>
-                  
+
                 </Icon.Button>
 
               </View>
@@ -134,7 +162,7 @@ const LoginScreen = () => {
 
                 >
                   <Text style={styles.textButton}>Continuar con Apple</Text>
-                  
+
                 </AntDesign.Button>
 
               </View>
@@ -156,23 +184,38 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageLogo: {
-    marginTop: 20,
+
     width : '100%',
     height: 100,
     alignContent : 'center'
   },
   containerButtons:{
-    marginTop : 50
+    marginTop : 5
   },
   containerLogo:{
     flex: 1,
-    
+    marginTop: 20,
+
+
   },
   textButton:{
     color : '#fff',
     fontSize : 15,
     fontWeight : 'bold',
-    
+
+  },
+  containerLeyend:{
+
+    marginVertical : 10,
+    height : 150,
+    justifyContent : 'center',
+    alignItems : 'center'
+
+  },
+  textLeyend:{
+    fontSize : 25,
+    fontWeight : 'bold',
+    color : '#fff'
   }
 });
 
