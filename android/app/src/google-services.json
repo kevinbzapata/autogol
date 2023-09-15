@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "799059352142",
+    "project_id": "autogolapp",
+    "storage_bucket": "autogolapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:799059352142:android:256d49c7efa83dbfd9011f",
+        "android_client_info": {
+          "package_name": "com.app_autogol"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2QaAig5-xJwVZNQSsCro-2HqW0H84R3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

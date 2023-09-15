@@ -1,5 +1,8 @@
 apply plugin: "com.android.application"
 apply plugin: "com.facebook.react"
+apply plugin: 'com.google.gms.google-services'
+
+
 apply from: file("../../node_modules/react-native-vector-icons/fonts.gradle")
 
 /**
@@ -102,10 +105,19 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
+    
 }
 
+//Agregadas recientemente
+   
+    //************************ */
 dependencies {
     // The version of react-native is set by the React Native Gradle Plugin
+    //Agregadas recientemente
+    implementation platform('com.google.firebase:firebase-bom:32.2.3')
+    implementation 'com.google.firebase:firebase-analytics'
+    //************************ */
+
     implementation("com.facebook.react:react-android")
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}")
